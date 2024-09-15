@@ -431,8 +431,8 @@ class Map{
 int main()
 {
     Map m;
-    int const_steps = 8; //Сколько шагов по горизонтали можно сделать сейчас
-    int const_timer = 9;
+    int const_steps = 10; //Сколько шагов по горизонтали можно сделать сейчас
+    int const_timer = 8;
     int timer = const_timer; //Раз в сколько кол-во шагов уменьшается
     int steps = const_steps; //Сколько шагов по горизонтали можно сделать
     char move;
@@ -448,17 +448,13 @@ int main()
             steps = const_steps;
         }
         else{
-            if(steps == 0){
+            if(timer <= 0){
+                timer=const_timer;
+                const_steps--;
+            }
+            if(steps <= 0){
                 m.fall();
-                if(timer < 1 and const_steps > 1){
-                    const_steps--;
-                    timer = const_timer;
-                    steps = const_steps;
-                }
-                else{
-                    timer--;
-                    steps = const_steps;
-                }
+                steps = const_steps;
             }
             else{
                 steps--;
